@@ -239,11 +239,11 @@ var qq = (function() {
     var qq_bootstrap_track = function(sound, track, success, failure, hm, se) {
         var target_url ='https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg' +
             '?g_tk=195219765&jsonpCallback=MusicJsonCallback004680169373158849' + 
-            '&loginUin=1297716249&hostUin=0&format=json&inCharset=utf8' + 
+            '&hostUin=0&format=json&inCharset=utf8' + 
             '&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0' + 
             '&cid=205361747&callback=MusicJsonCallback004680169373158849' + 
-            '&uin=1297716249&songmid='+ track.id.slice('qqtrack_'.length) +
-            '&filename=C400'+ track.id.slice('qqtrack_'.length) + '.m4a&guid=7332953645';
+            '&songmid='+ track.id.slice('qqtrack_'.length) +
+            '&filename=C100'+ track.id.slice('qqtrack_'.length) + '.m4a&guid=9138293736';
 
         hm({
             url:target_url,
@@ -255,10 +255,13 @@ var qq = (function() {
             data = data.slice(data.indexOf('(')+1,data.length-1);
             data = JSON.parse(data);
             var token = data.data.items[0].vkey;
-            var url = 'http://dl.stream.qqmusic.qq.com/C400' +
+            var url = 'http://ws.stream.qqmusic.qq.com/C100' +
               track.id.slice('qqtrack_'.length)  +
               '.m4a?vkey=' + token +
-              '&uin=1297716249&fromtag=0&guid=7332953645';
+              '&fromtag=0&guid=9138293736';
+            url = 'http://dl.stream.qqmusic.qq.com/M800'+
+              track.id.slice('qqtrack_'.length)  +
+              '.mp3?vkey=DE5016AC848A373BB27F4D5B2D7D33D2EE6E4D89902D7290873133128CA86A11AEB08BC90D71FC2249F5EEEDEE16C04C7D59EA4942A85EEF&guid=9138293736&fromtag=1';
             sound.url = url;
             success();
         });
